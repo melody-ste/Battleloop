@@ -10,15 +10,7 @@ const randomName = [
   "Grace", "Ulder", "Moana", "Draven", "Carl", "Olga", "Abel", "Yevelda", "Hugues", "Prosperine", "Jon", "Orianna", "Hagren", "Sirail", "Gontran","Dambert","Gysla", "Kali", "Mélissande", "Sam", "Kael"
 ];
 
-const classMap = {
-  Fighter,
-  Paladin,
-  Monk,
-  Berzerker,
-  Assassin,
-  Wizard,
-  Druid
-};
+const classMap = { Fighter, Paladin, Monk, Berzerker, Assassin, Wizard, Druid };
 
 function getRandomElement(array) {
   return array[Math.floor(Math.random() * array.length)];

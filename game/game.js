@@ -5,6 +5,14 @@ class Game {
     this.players = players;
     this.turnLeft= 10;
     this.turnCount =1;
+    this.humanPlayer = null;
+  }
+
+  setHumanPlayer(name) {
+    this.humanPlayer = this.players.find(h => h.name === name);
+    if (!this.humanPlayer) {
+      console.warn(`Aucun joueur trouvé avec le nom ${name}`);
+    }
   }
 
   skipTurn() {
@@ -34,7 +42,7 @@ class Game {
     return false;
   }
 
-  startTurn() {
+  playAITurn() {
     console.log(`Tour n°${this.turnCount}`);
     const alivePlayers = this.getAlivePlayers();
 
@@ -42,7 +50,7 @@ class Game {
     const shuffled = [...alivePlayers].sort(() => Math.random() - 0.5);
 
     shuffled.forEach(player => {
-      if (player.status !== "playing") return;
+      if (player === this.humanPlayer || player.status !== "playing") return;
 
       const enemies = this.getAlivePlayers().filter(p => p !== player);
       if (enemies.length === 0) return;
