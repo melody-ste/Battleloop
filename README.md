@@ -32,7 +32,7 @@ project-root/
 3. Submit to start the game.
 4. In the attack form:
    - Choose **normal** or **special attack**
-   - A random enemy will be targeted
+   - Choose your targeted
 
 Game progress and stats will be printed in the **developer console**.
 
@@ -42,4 +42,5 @@ Game progress and stats will be printed in the **developer console**.
 - JavaScript ES6+
 - HTML (basic forms)
 - Console for game output
+
 
