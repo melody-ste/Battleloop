@@ -1,7 +1,20 @@
 import Character from './character.js';
 
 class Wizard extends Character {
+  constructor(name) {
+    super(10, 2, 200);
+    this.name = name;
+  }
 
+  specialAttack(victim) {
+    if (this.mana >= 25) {
+      console.log(`${this.name} utilise l'attaque Fireball sur ${victim.name}`);
+      victim.takeDamage(7);
+      this.mana -= 25;
+    } else {
+      console.log(`${this.name}n'a pas assez de mana`);
+    }
+  }
 }
 
 export default Wizard;
