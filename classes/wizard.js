@@ -2,8 +2,7 @@ import Character from './character.js';
 
 class Wizard extends Character {
   constructor(name) {
-    super(10, 2, 200);
-    this.name = name;
+    super(name, 10, 2, 200);
   }
 
   specialAttack(victim) {

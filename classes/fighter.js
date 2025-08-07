@@ -2,7 +2,7 @@ import Character from './character.js';
 
 class Fighter extends Character {
 
-  constructor( name = "Grace" ) {
+  constructor(name) {
     super(name, 12, 4, 40);
     this.reducedDamage = false;
   }

@@ -1,7 +1,7 @@
 import Character from './character.js';
 
 class Assassin extends Character {
-  constructor(name="Carl") {
+  constructor(name) {
     super(name, 6, 6, 20);
     this.isUntouchable = false;
   }

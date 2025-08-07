@@ -1,7 +1,7 @@
 import Character from './character.js';
 
 class Paladin extends Character {
-  constructor(name="Ulder") {
+  constructor(name) {
     super(name, 16, 3, 160);
   }
 

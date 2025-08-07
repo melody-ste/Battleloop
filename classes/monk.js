@@ -1,7 +1,7 @@
 import Character from './character.js';
 
 class Monk extends Character {
-  constructor(name ="Moana") {
+  constructor(name) {
     super(name, 8, 2, 200);
   }
   

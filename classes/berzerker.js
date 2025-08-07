@@ -1,7 +1,7 @@
 import Character from './character.js';
 
 class Berzerker extends Character {
-  constructor(name="Draven") {
+  constructor(name) {
     super(name, 8, 4, 0);
   }
 
