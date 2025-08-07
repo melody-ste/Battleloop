@@ -8,8 +8,6 @@
 <body>
   <h1>RPG Game</h1>
 
-  <h3>Ton personnage</h3>
-  
   <form id="playerForm">
     <label for="playerName">Nom du personnage :</label>
     <input type="text" id="playerName" name="playerName" required />
@@ -27,12 +25,13 @@
     <button type="submit">Créer le personnage</button>
   </form>
 
-  <hr />
-
   <form id="attackForm" style="display:none;">
     <p>Choisissez votre attaque :</p>
     <label><input type="radio" name="attackType" value="normal" checked /> Attaque normale</label>
     <label><input type="radio" name="attackType" value="special" /> Attaque spéciale</label>
+
+    <label for="targetSelect">Choisissez votre target:</label>
+    <select name="targetSelect" id="targetSelect"></select>
     <button type="submit">Attaquer</button>
   </form>
   

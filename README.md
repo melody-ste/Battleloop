@@ -2,30 +2,27 @@
 
 A mini turn-based role-playing game (RPG) built in object-oriented JavaScript, playable in the browser console. Choose your hero, face off against randomized enemies, and try to survive until the last round!
 
----
 
-## 📦 Project Structure
+## Project Structure
 
-/project-root
-├── index.html # Form UI and game interaction
-├── main.js # Game initialization + form logic
-├── /game
-│ ├── game.js # Main Game class
-│ └── random_players.js # Function to generate AI players
-├── /classes
-│ ├── character.js # Base Character class
-│ ├── fighter.js
-│ ├── paladin.js
-│ ├── monk.js
-│ ├── berzerker.js
-│ ├── assassin.js
-│ ├── wizard.js
-│ └── druid.js
+project-root/
+├── index.html               # Form UI and game interaction
+├── main.js                  # Game initialization + form logic
+├── game/
+│   ├── game.js              # Main Game class
+│   └── random_players.js    # Function to generate AI players
+├── classes/
+│   ├── character.js         # Base Character class
+│   ├── fighter.js
+│   ├── paladin.js
+│   ├── monk.js
+│   ├── berzerker.js
+│   ├── assassin.js
+│   ├── wizard.js
+│   └── druid.js
 
 
----
-
-## 🚀 How to Play
+## How to Play
 
 1. **Open `index.html` in a browser**
 2. Fill in:
@@ -38,4 +35,10 @@ A mini turn-based role-playing game (RPG) built in object-oriented JavaScript, p
 
 Game progress and stats will be printed in the **developer console**.
 
----
+
+## Tech Used
+
+- JavaScript ES6+
+- HTML (basic forms)
+- Console for game output
+

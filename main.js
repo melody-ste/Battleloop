@@ -33,6 +33,7 @@ document.getElementById('playerForm').addEventListener('submit', (e) => {
 
   game = new Game(players);
   game.setHumanPlayer(name);
+  updateTargetOptions();
 
   // Cache le formulaire de création et affiche celui des attaques
   e.target.style.display = 'none';
@@ -42,6 +43,21 @@ document.getElementById('playerForm').addEventListener('submit', (e) => {
   game.watchStats();
 });
 
+
+function updateTargetOptions() {
+  const select = document.getElementById('targetSelect');
+  select.innerHTML = '';
+
+  const enemies = game.getAlivePlayers().filter(p => p !== game.humanPlayer);
+  enemies.forEach(enemy => {
+    const option = document.createElement('option');
+    option.value = enemy.name;
+    option.textContent = `${enemy.name} (${enemy.hp} HP)`;
+    select.appendChild(option);
+  });
+}
+
+
 // Formulaire pour choisir l'attaque 
 document.getElementById('attackForm').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -50,11 +66,13 @@ document.getElementById('attackForm').addEventListener('submit', (e) => {
 
   const attackType = e.target.attackType.value;
 
-  // cible au hasard (tu peux aussi faire formulaire cible)
-  const enemies = game.getAlivePlayers().filter(p => p !== game.humanPlayer);
-  if (enemies.length === 0) return alert('Plus d\'ennemis en vie !');
+  const selectedName = e.target.targetSelect.value;
+  const target = game.getAlivePlayers().find(p => p.name === selectedName);
 
-  const target = enemies[Math.floor(Math.random() * enemies.length)];
+  if (!target) {
+    alert('Cible invalide ou plus en vie !');
+    return;
+  }
 
   if (attackType === 'special') {
     game.humanPlayer.specialAttack(target);
@@ -65,4 +83,5 @@ document.getElementById('attackForm').addEventListener('submit', (e) => {
 
   game.playAITurn();
   game.watchStats();
+  updateTargetOptions();
 });
