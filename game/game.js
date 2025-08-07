@@ -1,3 +1,5 @@
+import Assassin from '../classes/assassin.js';
+
 class Game {
   constructor(players){
     this.players = players;
@@ -103,3 +105,5 @@ class Game {
   }
 
 }
+
+export default Game;
