@@ -14,6 +14,10 @@ class Wizard extends Character {
       console.log(`${this.name}n'a pas assez de mana`);
     }
   }
+
+  getSpecialDamage() {
+    return this.mana >= 25 ? 7 : 0;
+  }
 }
 
 export default Wizard;

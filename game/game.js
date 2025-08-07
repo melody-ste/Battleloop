@@ -43,6 +43,7 @@ class Game {
   }
 
   playAITurn() {
+    
     console.log(`Tour n°${this.turnCount}`);
     const alivePlayers = this.getAlivePlayers();
 
@@ -59,20 +60,39 @@ class Game {
 
       console.log(`c'est au tour de ${player.name}`);
 
-      // random pour test
-      const action = Math.random() < 0.5 ? 'normal' : 'special';
+      // recherche coup fatal
+      let fatalTarget = enemies.find(enemy => enemy.hp <= player.dmg);
 
-      if (action === 'special') {
-        player.specialAttack(target);
-        if (player instanceof Assassin) {
-          player.endTurn(target);
-        }
+      if (fatalTarget) {
+        console.log(`${player.name} choisit de tuer ${fatalTarget.name} avec une attaque normale !`);
+        player.dealDamage(fatalTarget);
       } else {
-        console.log(`${player.name} attaque ${target.name}`);
-        player.dealDamage(target);
+        // coup fatal avec attaque spéciale
+        if (typeof player.getSpecialDamage === 'function') {
+          const potentialSpecialDamage = player.getSpecialDamage(); 
+          fatalTarget = enemies.find(enemy => enemy.hp <= potentialSpecialDamage);
+        }
+
+        if (fatalTarget && player.mana >= player.specialCost) {
+          console.log(`${player.name} choisit de tuer ${fatalTarget.name} avec une attaque spéciale !`);
+          player.specialAttack(fatalTarget);
+          if (player instanceof Assassin) player.endTurn(fatalTarget);
+        } else {
+         
+          const target = enemies[Math.floor(Math.random() * enemies.length)];
+          const action = Math.random() < 0.5 ? 'normal' : 'special';
+
+          if (action === 'special' && player.mana >= player.specialCost) {
+            console.log(`${player.name} tente une attaque spéciale sur ${target.name}`);
+            player.specialAttack(target);
+            if (player instanceof Assassin) player.endTurn(target);
+          } else {
+            console.log(`${player.name} attaque ${target.name}`);
+            player.dealDamage(target);
+          }
+        }
       }
 
-      console.log(`${target.name} a ${target.hp} points de vie restants`);
     });
 
     

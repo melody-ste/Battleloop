@@ -14,6 +14,10 @@ class Druid extends Character {
       console.log(`${this.name}n'a pas assez de mana`);
     }
   }
+
+  getSpecialDamage() {
+    return this.mana >= 20 ? 5 : 0;
+  }
 }
 
 export default Druid;

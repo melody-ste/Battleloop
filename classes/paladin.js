@@ -15,5 +15,9 @@ class Paladin extends Character {
       console.log(`${this.name} n'a pas assez de mana`);
     }
   }
+
+  getSpecialDamage() {
+    return this.mana >= 40 ? 4 : 0;
+  }
 };
 export default Paladin;

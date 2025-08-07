@@ -28,6 +28,11 @@ class Fighter extends Character {
     }
     super.takeDamage(damage);
   }
+
+  getSpecialDamage() {
+    return this.mana >= 20 ? 5 : 0;
+  }
+
 };
 
 export default Fighter;

@@ -35,6 +35,11 @@ class Assassin extends Character {
       this.isUntouchable = false;
     }
   }
+
+  getSpecialDamage() {
+    return this.mana >= 20 ? 7 : 0;
+  }
+
 };
 
 export default Assassin;

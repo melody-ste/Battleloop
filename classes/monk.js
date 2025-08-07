@@ -14,6 +14,10 @@ class Monk extends Character {
       console.log(`${this.name} n'a pas assez de mana`);
     }
   }
+
+  getSpecialDamage() {
+    return 0; // Pas une attaque offensive
+  }
 };
 
 export default Monk;

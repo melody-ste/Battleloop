@@ -14,6 +14,13 @@ class Berzerker extends Character {
       this.status = 'loser';
       console.log(`${this.name} meurt de Rage.`);
     }
+    if (victim && victim.status === "playing") {
+      victim.takeDamage(this.dmg);
+    }
+  }
+
+  getSpecialDamage() {
+    return this.dmg + 2;
   }
 };
 
