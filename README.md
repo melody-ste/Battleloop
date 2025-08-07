@@ -5,6 +5,7 @@ A mini turn-based role-playing game (RPG) built in object-oriented JavaScript, p
 
 ## Project Structure
 
+```
 project-root/
 ├── index.html               # Form UI and game interaction
 ├── main.js                  # Game initialization + form logic
@@ -20,7 +21,7 @@ project-root/
 │   ├── assassin.js
 │   ├── wizard.js
 │   └── druid.js
-
+```
 
 ## How to Play
 

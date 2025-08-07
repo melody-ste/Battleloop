@@ -2,20 +2,20 @@ import Character from './character.js';
 
 class Assassin extends Character {
   constructor(name) {
-    super(name, 6, 6, 20);
+    super(name, 10, 6, 20);
     this.isUntouchable = false;
   }
 
   specialAttack(victim) {
     if (this.mana >= 20) {
-      console.log(`${this.name} utilise l'attaque Shadow Hit sur ${victim.name}`);
+      console.log(`\n${this.name} utilise l'attaque Shadow Hit sur ${victim.name} 💥`);
       this.isUntouchable = true;
       victim.takeDamage(7);
       this.mana -= 20;
 
       if (victim.status === 'loser') this.mana += 20;
     } else {
-      console.log(`${this.name}n'a pas assez de mana`);
+      console.log(`${this.name} n'a pas assez de mana`);
     }
   }
 

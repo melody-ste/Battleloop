@@ -2,13 +2,14 @@ import Character from './character.js';
 
 class Paladin extends Character {
   constructor(name) {
-    super(name, 16, 3, 160);
+    super(name, 12, 3, 160);
   }
 
   specialAttack(victim) {
     if (this.mana>=40) {
-      console.log(`${this.name} utilise le pouvoir Healing Lighting sur ${victim.name}`);
+      console.log(`\n${this.name} utilise le pouvoir Healing Lighting sur ${victim.name}💥💊`);
       victim.takeDamage(4);
+      this.hp += 5;
       this.mana-=40;
       if (victim.status === 'loser') this.mana += 20;
       } else {

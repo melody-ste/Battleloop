@@ -3,14 +3,14 @@ import Character from './character.js';
 class Fighter extends Character {
 
   constructor(name) {
-    super(name, 12, 4, 40);
+    super(name, 12, 4, 80);
     this.reducedDamage = false;
   }
 
   specialAttack(victim){
 
     if (this.mana>= 20) {
-      console.log(`${this.name} utilise l'attaque Dark Vision`);
+      console.log(`\n${this.name} utilise l'attaque Dark Vision 💥`);
       victim.takeDamage(5);
       this.reducedDamage = true;
       this.mana-=20;

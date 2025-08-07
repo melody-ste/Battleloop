@@ -7,8 +7,8 @@ class Wizard extends Character {
 
   specialAttack(victim) {
     if (this.mana >= 25) {
-      console.log(`${this.name} utilise l'attaque Fireball sur ${victim.name}`);
-      victim.takeDamage(7);
+      console.log(`\n${this.name} utilise l'attaque Fireball sur ${victim.name} 💥`);
+      victim.takeDamage(6);
       this.mana -= 25;
     } else {
       console.log(`${this.name}n'a pas assez de mana`);

@@ -2,12 +2,12 @@ import Character from './character.js';
 
 class Monk extends Character {
   constructor(name) {
-    super(name, 8, 2, 200);
+    super(name, 10, 3, 200);
   }
   
   specialAttack() {
     if (this.mana >= 25) {
-      console.log(`${this.name} utilise le pouvoir Heal`);
+      console.log(`\n${this.name} utilise le pouvoir Heal 💊`);
       this.hp += 8;
       this.mana -= 25;
     } else {

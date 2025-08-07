@@ -6,7 +6,7 @@ class Berzerker extends Character {
   }
 
   specialAttack() {
-    console.log(`${this.name} utilise l'attaque Rage.`);
+    console.log(`\n${this.name} utilise l'attaque Rage 💥`);
     this.dmg += 2;
     this.hp -= 1;
     if (this.hp <= 0) {

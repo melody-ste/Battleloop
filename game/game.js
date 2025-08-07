@@ -17,14 +17,24 @@ class Game {
 
   skipTurn() {
     this.turnLeft--;
-    console.log(`Le tour est fini. Il reste ${this.turnLeft} tour(s)`);
+    console.log(`\nLe tour est fini. Il reste ${this.turnLeft} tour(s)`);
   }
 
-  watchStats(){
-    console.log("Statistiques des joueurs :");
+  watchStats() {
+    console.log("\n📊 Statistiques des joueurs :");
+
+    // tableau
+    const stats = {};
     this.players.forEach(p => {
-      console.log(`| ${p.name} | HP: ${p.hp} | Mana: ${p.mana} | Status: ${p.status}|`);
+      stats[p.name] = {
+        Class: p.constructor.name,
+        HP: p.hp,
+        Mana: p.mana,
+        Status: p.status
+      };
     });
+
+    console.table(stats);
   }
 
   getAlivePlayers() {
@@ -36,101 +46,97 @@ class Game {
     if (alive.length === 1) {
       const winner = alive[0];
       winner.status = "winner";
-      console.log(`${winner.name} est le dernier survivant ! Il gagne la partie.`);
+      console.log(`\n🎉 ${winner.name} est le dernier survivant ! Il gagne la partie 👑`);
       return true;
     }
     return false;
   }
 
-  playAITurn() {
-    
-    console.log(`Tour n°${this.turnCount}`);
+  async playAITurn() {
     const alivePlayers = this.getAlivePlayers();
-
-    // Mélange les joueurs 
     const shuffled = [...alivePlayers].sort(() => Math.random() - 0.5);
 
-    shuffled.forEach(player => {
-      if (player === this.humanPlayer || player.status !== "playing") return;
+    for (const player of shuffled) {
+      if (player === this.humanPlayer || player.status !== "playing") continue;
 
       const enemies = this.getAlivePlayers().filter(p => p !== player);
       if (enemies.length === 0) return;
 
-      const target = enemies[Math.floor(Math.random() * enemies.length)]; //Math.floor pour arrondir le random
-
-      console.log(`c'est au tour de ${player.name}`);
+      const target = enemies[Math.floor(Math.random() * enemies.length)];
+      
+      console.log(`\n🔸 c'est au tour de ${player.name} 🔸`);
+      await this.delay(2000);
 
       // recherche coup fatal
       let fatalTarget = enemies.find(enemy => enemy.hp <= player.dmg);
 
       if (fatalTarget) {
-        console.log(`${player.name} choisit de tuer ${fatalTarget.name} avec une attaque normale !`);
+        console.log(`\n${player.name} choisit de tuer ${fatalTarget.name} avec une attaque normale !`);
+        await this.delay(2000);
         player.dealDamage(fatalTarget);
       } else {
-        // coup fatal avec attaque spéciale
         if (typeof player.getSpecialDamage === 'function') {
-          const potentialSpecialDamage = player.getSpecialDamage(); 
+          const potentialSpecialDamage = player.getSpecialDamage();
           fatalTarget = enemies.find(enemy => enemy.hp <= potentialSpecialDamage);
         }
 
         if (fatalTarget && player.mana >= player.specialCost) {
-          console.log(`${player.name} choisit de tuer ${fatalTarget.name} avec une attaque spéciale !`);
+          console.log(`\n${player.name} choisit de tuer ${fatalTarget.name} avec une attaque spéciale !`);
+          await this.delay(2000);
           player.specialAttack(fatalTarget);
           if (player instanceof Assassin) player.endTurn(fatalTarget);
         } else {
-         
           const target = enemies[Math.floor(Math.random() * enemies.length)];
           const action = Math.random() < 0.5 ? 'normal' : 'special';
 
           if (action === 'special' && player.mana >= player.specialCost) {
             console.log(`${player.name} tente une attaque spéciale sur ${target.name}`);
+            await this.delay(2000);
             player.specialAttack(target);
             if (player instanceof Assassin) player.endTurn(target);
           } else {
-            console.log(`${player.name} attaque ${target.name}`);
+            console.log(`\n🗡️ ${player.name} attaque ${target.name}`);
+            await this.delay(2000);
             player.dealDamage(target);
           }
         }
       }
-
-    });
-
-    
-    console.log("Joueurs encore en vie :");
-    this.getAlivePlayers().forEach(p => {
-      console.log(`- ${p.name} (${p.hp} HP)`);
-    });
-
+      await this.delay(2000);
+    }
     this.skipTurn();
     this.turnCount++;
+    if (game.checkWinner()) return;
   }
 
-
-  startGame() {
-    console.log("Début de la partie");
-
-    while (this.turnLeft > 0 && this.getAlivePlayers().length > 1) {
-      this.startTurn();
-
-      if (this.checkWinner()) break;
-    }
-
-    if (this.turnLeft === 0) {
-      console.log("Fin des tours !");
-      const survivors = this.getAlivePlayers();
-      if (survivors.length > 0) {
-        console.log("Gagnants :");
-        survivors.forEach(p => {
-          p.status = "winner";
-          console.log(`- ${p.name}`);
-        });
-      } else {
-        console.log("Personne n'a survécu...");
-      }
-    }
-
-    this.watchStats();
+  delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  // startGame() {
+  //   console.log("Début de la partie");
+
+  //   while (this.turnLeft > 0 && this.getAlivePlayers().length > 1) {
+  //     this.startTurn();
+
+  //     if (this.checkWinner()) break;
+  //   }
+
+  //   if (this.turnLeft === 0) {
+  //     console.log("\nFin des tours !");
+  //     const survivors = this.getAlivePlayers();
+  //     if (survivors.length > 0) {
+  //       console.log("\nGagnants :");
+  //       survivors.forEach(p => {
+  //         p.status = "winner";
+  //         console.log(`- ${p.name}`);
+  //       });
+  //     } else {
+  //       console.log("\nPersonne n'a survécu...");
+  //     }
+  //   }
+
+  //   this.watchStats();
+  // }
 
 }
 

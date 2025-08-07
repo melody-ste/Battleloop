@@ -1,0 +1,64 @@
+body {
+  font-family: 'Segoe UI', Verdana, sans-serif;
+  background-color: #d8d8f5;
+  color: #38174b;
+  margin: 0;
+  padding: 50px;
+}
+
+h1, h3 {
+  text-align: center;
+  color: #360b33;
+  padding-bottom: 20px;
+}
+
+form {
+  max-width: 500px;
+  margin: 20px auto;
+  background: #b4b4d3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(46, 2, 46, 0.2);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d8d8f5;
+  color: #38174b;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #38174b;
+  color: #d8d8f5;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #500050;
+}
+
+/* Radios et selecteurs */
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Sélecteur de cible */
+#targetSelect {
+  width: 100%;
+  margin-top: 10px;
+}

@@ -15,9 +15,9 @@ class Character {
     if (this.hp <= 0) {
       this.hp = 0;
       this.status = 'loser';
-      console.log(`${this.name} a perdu`);
+      console.log(`\n${this.name} a perdu 💀`);
     } else {
-      console.log(`${this.name} prends ${damage} point de dégât, il lui reste HP: ${this.hp}`);
+      console.log(`\n${this.name} prends ${damage} point de dégât, il lui reste HP: ${this.hp}`);
     }
   }
 
@@ -32,12 +32,12 @@ class Character {
 
     if (victim.status === 'loser') {
       this.mana += 20;
-      console.log(`${this.name}a éliminé ${victim.name} et gagne 20 mana!`);
+      console.log(`${this.name} a éliminé ${victim.name} et gagne 20 mana !`);
     }
   }
 
   specialAttack(victim) {
-    console.log(`${this.name} has no special attack.`);
+    console.log(`${this.name} n'a pas d'attauqe spécial`);
   }
 
   isAlive() {

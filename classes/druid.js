@@ -7,11 +7,11 @@ class Druid extends Character {
 
   specialAttack(victim) {
     if (this.mana >= 20) {
-      console.log(`${this.name} utilise l'attaque Summon Beast sur ${victim.name}`);
+      console.log(`\n${this.name} utilise l'attaque Summon Beast sur ${victim.name} 💥`);
       victim.takeDamage(5);
       this.mana -= 20;
     } else {
-      console.log(`${this.name}n'a pas assez de mana`);
+      console.log(`${this.name} n'a pas assez de mana`);
     }
   }
 

@@ -32,6 +32,7 @@ document.getElementById('playerForm').addEventListener('submit', (e) => {
   const players = [player, ...RandomPlayers];
 
   game = new Game(players);
+  window.game = game;
   game.setHumanPlayer(name);
   updateTargetOptions();
 
@@ -40,7 +41,8 @@ document.getElementById('playerForm').addEventListener('submit', (e) => {
   document.getElementById('attackForm').style.display = 'block';
 
   console.log('Partie démarrée avec', players);
-  game.watchStats();
+  console.log("🎮 Préparez-vous au combat !");
+  
 });
 
 
@@ -52,7 +54,7 @@ function updateTargetOptions() {
   enemies.forEach(enemy => {
     const option = document.createElement('option');
     option.value = enemy.name;
-    option.textContent = `${enemy.name} (${enemy.hp} HP)`;
+    option.textContent = `${enemy.name}`;
     select.appendChild(option);
   });
 }
@@ -81,7 +83,10 @@ document.getElementById('attackForm').addEventListener('submit', (e) => {
     game.humanPlayer.dealDamage(target);
   }
 
-  game.playAITurn();
+  if (game.checkWinner()) return;
+  
   game.watchStats();
+  game.playAITurn();
+  
   updateTargetOptions();
 });
