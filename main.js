@@ -1,5 +1,5 @@
 import Game from './game/game.js';
-import {generateRandomPlayers} from './game/random_players.js'
+import {generateRandomPlayers} from './game/random_players.js';
 
 import Fighter from './classes/fighter.js';
 import Paladin from './classes/paladin.js';
@@ -60,11 +60,11 @@ function updateTargetOptions() {
 }
 
 
-// Formulaire pour choisir l'attaque 
-document.getElementById('attackForm').addEventListener('submit', (e) => {
+let playGame = (e) => {
   e.preventDefault();
 
   if (!game) return alert('La partie n’a pas encore commencé');
+
 
   const attackType = e.target.attackType.value;
 
@@ -86,7 +86,9 @@ document.getElementById('attackForm').addEventListener('submit', (e) => {
   if (game.checkWinner()) return;
   
   game.watchStats();
-  game.playAITurn();
+  game.finishGame();
   
   updateTargetOptions();
-});
+}
+
+document.getElementById('attackForm').addEventListener('submit', playGame);

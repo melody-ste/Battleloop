@@ -1,8 +1,11 @@
 import Character from './character.js';
 
+const defaultValue = {hp:8, dmg:3, mana:200}
+
 class Monk extends Character {
+  
   constructor(name) {
-    super(name, 10, 3, 200);
+    super({name,...defaultValue});
   }
   
   specialAttack() {

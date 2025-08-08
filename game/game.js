@@ -51,6 +51,17 @@ class Game {
     }
     return false;
   }
+  
+  async finishGame() {
+    const isHumanPlayerDead = this.humanPlayer.status === "loser";
+    if(isHumanPlayerDead && this.getAlivePlayers().length>1){
+      console.log(`Tu as perdu`);
+      await this.playAITurn(); 
+      this.finishGame();
+      return true;
+    }
+    this.playAITurn() 
+  }
 
   async playAITurn() {
     const alivePlayers = this.getAlivePlayers();
@@ -111,6 +122,10 @@ class Game {
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  // function playTurns() {
+    
+  // }
 
   // startGame() {
   //   console.log("Début de la partie");

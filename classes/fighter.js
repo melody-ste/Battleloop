@@ -1,9 +1,11 @@
 import Character from './character.js';
 
-class Fighter extends Character {
+const defaultValue = {hp:12, dmg:4, mana:80}
 
+class Fighter extends Character {
+  
   constructor(name) {
-    super(name, 12, 4, 80);
+    super({name,...defaultValue});
     this.reducedDamage = false;
   }
 

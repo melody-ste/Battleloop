@@ -1,8 +1,11 @@
 import Character from './character.js';
 
+const defaultValue = {hp:10, dmg:6, mana:20}
+
 class Assassin extends Character {
+  
   constructor(name) {
-    super(name, 10, 6, 20);
+    super({name,...defaultValue});
     this.isUntouchable = false;
   }
 

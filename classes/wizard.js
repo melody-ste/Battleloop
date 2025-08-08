@@ -1,8 +1,11 @@
 import Character from './character.js';
 
+const defaultValue = {hp:10, dmg:2, mana:200}
+
 class Wizard extends Character {
+  
   constructor(name) {
-    super(name, 10, 2, 200);
+    super({name,...defaultValue});
   }
 
   specialAttack(victim) {

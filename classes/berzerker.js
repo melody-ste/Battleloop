@@ -1,8 +1,11 @@
 import Character from './character.js';
 
+const defaultValue = {hp:8, dmg:4, mana:0}
+
 class Berzerker extends Character {
+  
   constructor(name) {
-    super(name, 8, 4, 0);
+    super({name,...defaultValue});
   }
 
   specialAttack() {

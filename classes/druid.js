@@ -1,8 +1,11 @@
 import Character from './character.js';
 
+const defaultValue = {hp:14, dmg:3, mana:140}
+
 class Druid extends Character {
+  
   constructor(name) {
-    super(name, 14, 3, 140);
+    super({name,...defaultValue});
   }
 
   specialAttack(victim) {

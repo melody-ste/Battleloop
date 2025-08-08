@@ -1,8 +1,11 @@
 import Character from './character.js';
 
+const defaultValue = {hp:12, dmg:3, mana:160}
+
 class Paladin extends Character {
+  
   constructor(name) {
-    super(name, 12, 3, 160);
+    super({name,...defaultValue});
   }
 
   specialAttack(victim) {

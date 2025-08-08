@@ -1,10 +1,10 @@
 class Character {
 
-  constructor(name, hp, dmg, mana) {
-    this.name = name;
-    this.hp = hp;
-    this.dmg = dmg;
-    this.mana = mana;
+  constructor(object) {
+    this.name = object.name;
+    this.hp = object.hp;
+    this.dmg = object.dmg;
+    this.mana = object.mana;
     this.status = "playing";
   }
 
