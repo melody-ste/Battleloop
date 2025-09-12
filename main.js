@@ -13,6 +13,32 @@ const classMap = { Fighter, Paladin, Monk, Berzerker, Assassin, Wizard, Druid };
 
 let game;
 
+function formatArgs(args) {
+  return args.map(a => {
+    if (a instanceof Error) return a.stack || a.message;
+    if (typeof a === 'object') {
+      try { return JSON.stringify(a, null, 2); } catch (e) { return String(a); }
+    }
+    return String(a);
+  }).join(' ');
+}
+
+function logToScreen(message) {
+  const logArea = document.getElementById('logArea');
+  const p = document.createElement('p');
+  p.textContent = message;
+  logArea.appendChild(p);
+  logArea.scrollTop = logArea.scrollHeight; // auto-scroll
+}
+
+(function () {
+  const nativeLog = console.log;
+  console.log = (...args) => {
+    nativeLog(...args); // garde l'affichage normal dans la console
+    logToScreen(formatArgs(args)); // ajoute l'affichage dans l'écran
+  };
+})();
+
 // Récupère les infos du formulaire
 document.getElementById('playerForm').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -90,5 +116,6 @@ let playGame = (e) => {
   
   updateTargetOptions();
 }
+
 
 document.getElementById('attackForm').addEventListener('submit', playGame);
