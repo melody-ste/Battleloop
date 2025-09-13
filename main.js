@@ -28,14 +28,18 @@ function logToScreen(message) {
   const p = document.createElement('p');
   p.textContent = message;
   logArea.appendChild(p);
-  logArea.scrollTop = logArea.scrollHeight; // auto-scroll
+
+  const maxLogs = 10; // nombre de lignes visibles max
+  while (logArea.children.length > maxLogs) {
+    logArea.removeChild(logArea.firstChild); // supprime les plus anciens
+  }
 }
 
 (function () {
   const nativeLog = console.log;
   console.log = (...args) => {
-    nativeLog(...args); // garde l'affichage normal dans la console
-    logToScreen(formatArgs(args)); // ajoute l'affichage dans l'écran
+    nativeLog(...args); 
+    logToScreen(formatArgs(args)); 
   };
 })();
 
