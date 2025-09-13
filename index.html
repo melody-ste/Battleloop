@@ -11,14 +11,16 @@
 <body>
   <h1>BATTLELOOP</h1>
 
+  <div id="statsArea" class="stats-grid"></div>
+
   <div class="log-card">
     <div id="logArea">
-      <p>📜 Logs de la partie :</p>
+      <p>Bienvenue dans BattleLoop, la partie va bientôt commencer...</p>
     </div>
   </div>
 
   <form id="playerForm">
-    <label for="playerName">Nom du personnage :</label>
+    <label for="playerName">Nom de ton personnage :</label>
     <input type="text" id="playerName" name="playerName" required />
 
     <label for="playerClass">Classe :</label>
@@ -31,15 +33,15 @@
       <option value="Wizard">Wizard</option>
       <option value="Druid">Druid</option>
     </select>
-    <button type="submit">Créer le personnage</button>
+    <button type="submit">Créer ton personnage</button>
   </form>
 
   <form id="attackForm" style="display:none;">
-    <p>Choisissez votre attaque :</p>
+    <p>Choisis ton attaque :</p>
     <label><input type="radio" name="attackType" value="normal" checked /> Attaque normale</label>
     <label><input type="radio" name="attackType" value="special" /> Attaque spéciale</label>
 
-    <label for="targetSelect">Choisissez votre target :</label>
+    <label for="targetSelect">Choisis ta cible :</label>
     <select name="targetSelect" id="targetSelect"></select>
     <button type="submit">Attaquer</button>
   </form>

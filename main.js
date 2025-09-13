@@ -28,7 +28,7 @@ function logToScreen(message) {
   const p = document.createElement('p');
   p.textContent = message;
   logArea.appendChild(p);
-
+  
   const maxLogs = 10; // nombre de lignes visibles max
   while (logArea.children.length > maxLogs) {
     logArea.removeChild(logArea.firstChild); // supprime les plus anciens
@@ -64,13 +64,13 @@ document.getElementById('playerForm').addEventListener('submit', (e) => {
   game = new Game(players);
   window.game = game;
   game.setHumanPlayer(name);
+  game.updateStatsUI();
   updateTargetOptions();
 
   // Cache le formulaire de création et affiche celui des attaques
   e.target.style.display = 'none';
   document.getElementById('attackForm').style.display = 'block';
 
-  console.log('Partie démarrée avec', players);
   console.log("🎮 Préparez-vous au combat !");
   
 });
@@ -95,9 +95,7 @@ let playGame = (e) => {
 
   if (!game) return alert('La partie n’a pas encore commencé');
 
-
   const attackType = e.target.attackType.value;
-
   const selectedName = e.target.targetSelect.value;
   const target = game.getAlivePlayers().find(p => p.name === selectedName);
 
@@ -114,8 +112,8 @@ let playGame = (e) => {
   }
 
   if (game.checkWinner()) return;
-  
-  game.watchStats();
+
+  game.updateStatsUI();
   game.finishGame();
   
   updateTargetOptions();

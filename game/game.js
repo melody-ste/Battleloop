@@ -37,6 +37,27 @@ class Game {
     console.table(stats);
   }
 
+
+  updateStatsUI() {
+    const statsArea = document.getElementById('statsArea');
+    statsArea.innerHTML = ''; // reset avant de recréer
+
+    this.players.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'player-card';
+
+      card.innerHTML = `
+        <h3>${p.name}</h3>
+        <div class="class">${p.constructor.name}</div>
+        <div class="stat">❤️ HP : ${p.hp}</div>
+        <div class="stat">🔮 Mana : ${p.mana}</div>
+        <div class="stat">📌 Status : ${p.status}</div>
+      `;
+
+      statsArea.appendChild(card);
+    });
+  }
+
   getAlivePlayers() {
     return this.players.filter(p => p.status === "playing");
   }
@@ -85,7 +106,10 @@ class Game {
         console.log(`\n${player.name} choisit de tuer ${fatalTarget.name} avec une attaque normale !`);
         await this.delay(2000);
         player.dealDamage(fatalTarget);
+        this.updateStatsUI();
+
       } else {
+
         if (typeof player.getSpecialDamage === 'function') {
           const potentialSpecialDamage = player.getSpecialDamage();
           fatalTarget = enemies.find(enemy => enemy.hp <= potentialSpecialDamage);
@@ -96,6 +120,8 @@ class Game {
           await this.delay(2000);
           player.specialAttack(fatalTarget);
           if (player instanceof Assassin) player.endTurn(fatalTarget);
+          this.updateStatsUI();
+
         } else {
           const target = enemies[Math.floor(Math.random() * enemies.length)];
           const action = Math.random() < 0.5 ? 'normal' : 'special';
@@ -105,10 +131,13 @@ class Game {
             await this.delay(2000);
             player.specialAttack(target);
             if (player instanceof Assassin) player.endTurn(target);
+            this.updateStatsUI();
+
           } else {
             console.log(`\n🗡️ ${player.name} attaque ${target.name}`);
             await this.delay(2000);
             player.dealDamage(target);
+            this.updateStatsUI();
           }
         }
       }
