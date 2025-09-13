@@ -26,11 +26,36 @@ p {
   font-size: 20px;
 }
 
+/* ===== LAYOUT PRINCIPAL ===== */
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; 
+  gap: 2rem;
+  align-items: start; 
+  max-width: 1500px;
+  margin: auto;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+/* ========== COMPONENTS ========== */
+
 form {
   max-width: 500px;
   margin: 20px auto;
   background-color: var(--secondary-color);
-  padding: 20px;
+  padding: 20px 50px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
@@ -68,15 +93,9 @@ button {
 button:hover {
   background-color: var(--secondary-color);
   color: var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Radios et selecteurs */
-input[type="radio"] {
-  margin-right: 5px;
-  
-}
-
-/* Sélecteur de cible */
 #targetSelect {
   width: 100%;
   margin-top: 10px;
@@ -87,8 +106,8 @@ input[type="radio"] {
 
 .log-card {
   max-width: 900px;
-  margin:  auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 1.5rem;
   background: var(--secondary-color);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -101,7 +120,7 @@ input[type="radio"] {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  margin: 1rem auto;
+  margin: 1rem;
   max-width: 950px;
 }
 
@@ -130,4 +149,10 @@ input[type="radio"] {
 
 .stat {
   margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr; /* une seule colonne */
+  }
 }

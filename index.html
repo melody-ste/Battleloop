@@ -10,41 +10,46 @@
 
 <body>
   <h1>BATTLELOOP</h1>
+  <div class="layout">
+    <div class="left-panel">
+      <div id="statsArea" class="stats-grid"></div>
 
-  <div id="statsArea" class="stats-grid"></div>
+      <div class="log-card">
+        <div id="logArea">
+          <p>Bienvenue dans BattleLoop, la partie va bientôt commencer...</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="log-card">
-    <div id="logArea">
-      <p>Bienvenue dans BattleLoop, la partie va bientôt commencer...</p>
+    <div class="right-panel">
+      <form id="playerForm">
+        <label for="playerName">Nom de ton personnage :</label>
+        <input type="text" id="playerName" name="playerName" required />
+
+        <label for="playerClass">Classe :</label>
+        <select id="playerClass" name="playerClass" required>
+          <option value="Fighter">Fighter</option>
+          <option value="Paladin">Paladin</option>
+          <option value="Monk">Monk</option>
+          <option value="Berzerker">Berzerker</option>
+          <option value="Assassin">Assassin</option>
+          <option value="Wizard">Wizard</option>
+          <option value="Druid">Druid</option>
+        </select>
+        <button type="submit">Créer ton personnage</button>
+      </form>
+
+      <form id="attackForm" style="display:none;">
+        <p>Choisis ton attaque :</p>
+        <label><input type="radio" name="attackType" value="normal" checked /> Attaque normale</label>
+        <label><input type="radio" name="attackType" value="special" /> Attaque spéciale</label>
+
+        <label for="targetSelect">Choisis ta cible :</label>
+        <select name="targetSelect" id="targetSelect"></select>
+        <button type="submit">Attaquer</button>
+      </form>
     </div>
   </div>
-
-  <form id="playerForm">
-    <label for="playerName">Nom de ton personnage :</label>
-    <input type="text" id="playerName" name="playerName" required />
-
-    <label for="playerClass">Classe :</label>
-    <select id="playerClass" name="playerClass" required>
-      <option value="Fighter">Fighter</option>
-      <option value="Paladin">Paladin</option>
-      <option value="Monk">Monk</option>
-      <option value="Berzerker">Berzerker</option>
-      <option value="Assassin">Assassin</option>
-      <option value="Wizard">Wizard</option>
-      <option value="Druid">Druid</option>
-    </select>
-    <button type="submit">Créer ton personnage</button>
-  </form>
-
-  <form id="attackForm" style="display:none;">
-    <p>Choisis ton attaque :</p>
-    <label><input type="radio" name="attackType" value="normal" checked /> Attaque normale</label>
-    <label><input type="radio" name="attackType" value="special" /> Attaque spéciale</label>
-
-    <label for="targetSelect">Choisis ta cible :</label>
-    <select name="targetSelect" id="targetSelect"></select>
-    <button type="submit">Attaquer</button>
-  </form>
   
   <script type="module" src="main.js"></script>
 </body>

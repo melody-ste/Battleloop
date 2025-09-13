@@ -29,7 +29,7 @@ function logToScreen(message) {
   p.textContent = message;
   logArea.appendChild(p);
   
-  const maxLogs = 10; // nombre de lignes visibles max
+  const maxLogs = 8; // nombre de lignes visibles max
   while (logArea.children.length > maxLogs) {
     logArea.removeChild(logArea.firstChild); // supprime les plus anciens
   }

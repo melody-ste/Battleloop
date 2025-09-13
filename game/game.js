@@ -117,7 +117,7 @@ class Game {
 
         if (fatalTarget && player.mana >= player.specialCost) {
           console.log(`\n${player.name} choisit de tuer ${fatalTarget.name} avec une attaque spéciale !`);
-          await this.delay(2000);
+          await this.delay(1700);
           player.specialAttack(fatalTarget);
           if (player instanceof Assassin) player.endTurn(fatalTarget);
           this.updateStatsUI();
@@ -128,20 +128,20 @@ class Game {
 
           if (action === 'special' && player.mana >= player.specialCost) {
             console.log(`${player.name} tente une attaque spéciale sur ${target.name}`);
-            await this.delay(2000);
+            await this.delay(1700);
             player.specialAttack(target);
             if (player instanceof Assassin) player.endTurn(target);
             this.updateStatsUI();
 
           } else {
             console.log(`\n🗡️ ${player.name} attaque ${target.name}`);
-            await this.delay(2000);
+            await this.delay(1700);
             player.dealDamage(target);
             this.updateStatsUI();
           }
         }
       }
-      await this.delay(2000);
+      await this.delay(1700);
     }
     this.skipTurn();
     this.turnCount++;
