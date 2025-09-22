@@ -7,7 +7,7 @@ import Monk from './classes/monk.js';
 import Berzerker from './classes/berzerker.js';
 import Assassin from './classes/assassin.js';
 import Wizard from './classes/wizard.js';
-import Druid from '../classes/druid.js';
+import Druid from './classes/druid.js';
 
 const classMap = { Fighter, Paladin, Monk, Berzerker, Assassin, Wizard, Druid };
 
